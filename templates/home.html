@@ -1,0 +1,76 @@
+<!-- templates/home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Blog</title>
+    <style>
+        body {
+            background-color: hotpink;
+        }
+        h1.judul {
+            color: darksalmon;
+            text-align: center;
+        }
+        h2.kategori {
+            color: ghostwhite;
+            text-align: center;
+        }
+        nav.menu {
+            text-align: center;
+            color: white;
+        }
+    img.foto1 {
+        text-align: center;
+        width: 20%;
+        display: block;
+        margin: 0 auto;
+    }
+    </style>
+
+</head>
+<body>
+    <header>
+        <nav class="menu">
+            <a href="#">home</a>
+            <a href="#">about</a>
+        </nav>
+    </header>
+
+    <img src="https://studiosol-a.akamaihd.net/uploadfile/letras/fotos/a/d/5/4/ad543503950c02453206cd008898fc83.jpg" class="foto1" alt="">
+    <h1 class="judul">Welcome to Rani space</h1>
+
+    <h2 class="kategori">Categories</h2>
+    <ul>
+        {% for category in categories %}
+            <li>{{ category.category }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Pages</h2>
+    <ul>
+        {% for page in pages %}
+            <li><a href="{% url 'page_detail' page.slug %}">{{ page.title }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <h2>Posts</h2>
+    <ul>
+        {% for post in posts %}
+            <li><a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a></li>
+            {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}">
+        {% endif %}
+        {% endfor %}
+    </ul>
+
+    <footer>
+        <nav class="menu">
+            <a href="#">home</a>
+            <a href="#">about</a>
+        </nav>
+    </footer>
+</body>
+</html>
